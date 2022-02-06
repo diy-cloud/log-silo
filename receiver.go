@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"os"
 	"strconv"
@@ -57,6 +58,8 @@ func RunNats(pw *writer.ParquetWriter) {
 	}
 	defer sub.Unsubscribe()
 
+	fmt.Println("connect on", natsURL, ", subject: ", subject)
+
 	<-signal.NewTerminate()
 }
 
@@ -87,6 +90,8 @@ func RunKafka(pw *writer.ParquetWriter) {
 	}
 	defer conn.Close()
 
+	fmt.Println("connect on ", url, ", topic: ", topic, ", partition: ", partition)
+
 	buf := make([]byte, 8*1024)
 	for {
 		n, err := conn.Read(buf)
@@ -107,10 +112,31 @@ func RunKafka(pw *writer.ParquetWriter) {
 }
 
 func RunHTTP(pw *writer.ParquetWriter) {
-	http.HandleFunc("/push", func(rw http.ResponseWriter, r *http.Request) {
-
+	http.HandleFunc("/", func(rw http.ResponseWriter, r *http.Request) {
+		switch r.Method {
+		case "POST":
+			l := new(Log)
+			decoder := json.NewDecoder(r.Body)
+			if err := decoder.Decode(l); err != nil {
+				l.AppID = -1
+				l.Level = ERROR
+				l.Message = err.Error()
+				l.UnixTime = time.Now().Unix()
+			}
+			if err := pw.Write(l); err != nil {
+				panic(err)
+			}
+		}
 	})
-	http.HandleFunc("/pull", func(rw http.ResponseWriter, r *http.Request) {
 
-	})
+	url := "0.0.0.0:14219"
+	if value := os.Getenv("HTTP_URL"); value != "" {
+		url = value
+	}
+
+	fmt.Println("Listening on", url)
+
+	if err := http.ListenAndServe(url, nil); err != nil {
+		panic(err)
+	}
 }
