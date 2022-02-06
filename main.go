@@ -5,12 +5,13 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/snowmerak/log-silo/log"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/writer"
 )
 
 func main() {
-	if err := os.Mkdir(filepath.Join(".", "log"), 0777); err != nil {
+	if err := os.MkdirAll(filepath.Join(".", "logs"), 0777); err != nil {
 		panic(err)
 	}
 
@@ -20,7 +21,7 @@ func main() {
 	}
 	defer f.Close()
 
-	pw, err := writer.NewParquetWriter(f, new(Log), 8)
+	pw, err := writer.NewParquetWriter(f, new(log.Log), 8)
 	if err != nil {
 		panic(err)
 	}
