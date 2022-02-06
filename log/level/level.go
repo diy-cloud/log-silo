@@ -1,4 +1,4 @@
-package main
+package level
 
 const (
 	DEBUG = iota
