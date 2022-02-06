@@ -8,7 +8,7 @@ import (
 	"syscall"
 )
 
-const signalNum = 2
+const signalNum = 1
 
 var sigs = make(chan os.Signal, 1)
 var done = make(chan struct{}, signalNum)
