@@ -7,8 +7,6 @@ import (
 
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/writer"
-
-	"github.com/snowmerak/log-silo/util/signal"
 )
 
 func main() {
@@ -35,6 +33,4 @@ func main() {
 	ReadParquetEnv(pw)
 
 	RunReceiver(pw)
-
-	<-signal.NewTerminate()
 }
