@@ -79,6 +79,8 @@ listening http server
 
 default HTTP_URL = 0.0.0.0:14219
 
+send post request to "/"
+
 ---
 
 ## log data
