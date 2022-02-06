@@ -54,3 +54,7 @@ default KAFKA_NETWORK = tcp
 defaul KAFKA_URL = localhost:9092
 
 - http
+
+#### HTTP_URL
+
+default HTTP_URL = 0.0.0.0:14219
