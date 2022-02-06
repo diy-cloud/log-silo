@@ -36,4 +36,21 @@ default NATS_URL = log
 #### NATS_SUBJECT
 
 - kafka
+
+#### KAFKA_TOPIC
+
+dafault KAFKA_TOPIC = log
+
+#### KAFKA_PARTITION
+
+default KAFKA_PARTITION = 0
+
+#### KAFKA_NETWORK
+
+default KAFKA_NETWORK = tcp
+
+#### KAFKA_URL
+
+defaul KAFKA_URL = localhost:9092
+
 - http
