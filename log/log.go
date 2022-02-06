@@ -1,4 +1,4 @@
-package main
+package log
 
 type Log struct {
 	UnixTime int64  `parquet:"name=unix_time, type=INT64" json:"unix_time"`
