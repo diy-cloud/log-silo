@@ -10,7 +10,7 @@ import (
 
 func ReadParquetEnv(pw *writer.ParquetWriter) {
 	pw.RowGroupSize = 256 * 1024 * 1024
-	pw.PageSize = 8 * 1024
+	pw.PageSize = 4 * 1024
 	pw.CompressionType = parquet.CompressionCodec_SNAPPY
 
 	if value := os.Getenv("PARQUET_ROW_GROUP_SIZE"); value != "" {
