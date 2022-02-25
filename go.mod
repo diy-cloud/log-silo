@@ -1,4 +1,4 @@
-module github.com/snowmerak/log-silo
+module github.com/diy-cloud/log-silo
 
 go 1.17
 

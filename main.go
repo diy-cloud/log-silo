@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/snowmerak/log-silo/log"
+	"github.com/diy-cloud/log-silo/log"
 	"github.com/xitongsys/parquet-go-source/local"
 	"github.com/xitongsys/parquet-go/writer"
 )

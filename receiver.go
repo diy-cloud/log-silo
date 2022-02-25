@@ -9,11 +9,11 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/diy-cloud/log-silo/log"
+	"github.com/diy-cloud/log-silo/log/level"
+	"github.com/diy-cloud/log-silo/util/signal"
 	"github.com/nats-io/nats.go"
 	"github.com/segmentio/kafka-go"
-	"github.com/snowmerak/log-silo/log"
-	"github.com/snowmerak/log-silo/log/level"
-	"github.com/snowmerak/log-silo/util/signal"
 	"github.com/xitongsys/parquet-go/writer"
 )
 
